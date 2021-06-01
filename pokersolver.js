@@ -41,7 +41,7 @@
       if (opts.lo) {
         return LO_VALUE_MAP[this.value] < 9 ? LO_VALUE_MAP[this.value] : '9';
       }
-      return this.wildValue.replace('T', '10') + this.suit;
+      return this.wildValue + this.suit;
     }
 
     static sort(a, b) {
