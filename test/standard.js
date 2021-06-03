@@ -1,4 +1,5 @@
 var should = require('should');
+var Card = require('../pokersolver').Card;
 var Hand = require('../pokersolver').Hand;
 var Flush = require('../pokersolver').Flush;
 var StraightFlush = require('../pokersolver').StraightFlush;
@@ -238,3 +239,14 @@ describe('toString low', function() {
     h1.toString().should.equal('As, 6c, 4h, 3s, 2s');
   })
 });
+
+describe('parse a card', function() {
+  it('can parse a card string', () => {
+    const card = new Card('Ts');
+    card.toString().should.equal('Ts');
+  })
+
+  it('should throw error for invalid string', () => {
+    (function() {new Card('Tss');}).should.throw;
+  })
+})
