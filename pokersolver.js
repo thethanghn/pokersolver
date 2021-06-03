@@ -8,7 +8,8 @@
   'use strict';
 
   // NOTE: The 'joker' will be denoted with a value of 'O' and any suit.
-  var values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+  const values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+  const suits = ['s', 'c', 'd', 'h', 'r'];
   const LO_VALUE_MAP = {
     1: 1,
     2: 2,
@@ -31,6 +32,9 @@
    */
   class Card {
     constructor(str) {
+      if (str.length !== 2 || (str !== 'Or' && (!values.includes(str[0]) || !suits.includes(str[1].toLowerCase() )))) {
+        throw new Error(`Invalid card string: ${str}`);
+      }
       this.value = str.substr(0, 1);
       this.suit = str.substr(1, 1).toLowerCase();
       this.rank = values.indexOf(this.value);
