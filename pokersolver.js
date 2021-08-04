@@ -345,8 +345,8 @@
 
           // only check if whether they have 5 low cards in normal lo rules (except nullo/badugi)
           if(
-            !nulloLo && hand.filter(card => card < 9).length < 5 ||
-            nulloLo && hand.filter(card => card < 9).length <= 0
+            (!nulloLo && hand.filter(card => card < 9).length < 5) ||
+            (nulloLo && hand.filter(card => card < 9).length <= 0)
           ) {
             throw new Error('Unqulified lo hand');
           }
