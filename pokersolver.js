@@ -306,7 +306,7 @@
      * @param  {Array} hands Hands to evaluate.
      * @return {Array}       Winning hands.
      */
-    static winners(hands, lo) {
+    static winners(hands, lo, nulloLo=false) {
       if (!lo) {
         hands = hands.filter(function(h) {
           return h.qualifiesHigh();
@@ -339,9 +339,17 @@
         handsInString.forEach(hand => {
           if(hand.filter((value, index, self) => {
             return self.indexOf(value) === index;
-          }).length < 5 || hand.filter(card => card < 9).length < 5) {
+          }).length < 5) {
             throw new Error('Unqulified lo hand');
           };
+
+          // only check if whether they have 5 low cards in normal lo rules (except nullo/badugi)
+          if(
+            !nulloLo && hand.filter(card => card < 9).length < 5 ||
+            nulloLo && hand.filter(card => card < 9).length <= 0
+          ) {
+            throw new Error('Unqulified lo hand');
+          }
         });
 
         const los = handsInString.map(h => parseInt(h.join('')));
