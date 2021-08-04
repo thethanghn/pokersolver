@@ -306,7 +306,9 @@
      * @param  {Array} hands Hands to evaluate.
      * @return {Array}       Winning hands.
      */
-    static winners(hands, lo, nulloLo=false) {
+    static winners(hands, loParams) {
+      const { lo, nulloLo } = loParams
+
       if (!lo) {
         hands = hands.filter(function(h) {
           return h.qualifiesHigh();
