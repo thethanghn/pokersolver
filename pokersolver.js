@@ -341,8 +341,8 @@
         handsInString.forEach(hand => {
           if(hand.filter((value, index, self) => {
             return self.indexOf(value) === index;
-          }).length < 5) {
-            throw new Error('Unqulified lo hand');
+          }).length < hand.length) {
+            throw new Error('Unqualified lo hand, duplicated cards in hand');
           };
 
           // only check if whether they have 5 low cards in normal lo rules (except nullo/badugi)
@@ -350,7 +350,7 @@
             (!nulloLo && hand.filter(card => card < 9).length < 5) ||
             (nulloLo && hand.filter(card => card < 9).length <= 0)
           ) {
-            throw new Error('Unqulified lo hand');
+            throw new Error('Unqualified lo hand, not enough low cards in hand');
           }
         });
 
